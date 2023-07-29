@@ -15,10 +15,10 @@ public class HttpClientFactory {
 
     public final String urlFootball = "https://s3.eu-west-1.amazonaws.com/hackajob-assets1.p.hackajob/challenges/football_session/football.json";
 
+    // Since Java 11
     private HttpClient client = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_1_1)
             .connectTimeout(Duration.ofDays(1)).build();
-
 
     public String connectionHttpClient() {
         try {
@@ -30,15 +30,10 @@ public class HttpClientFactory {
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            // print response headers
             HttpHeaders headers = response.headers();
-            headers.map().forEach((k, v) -> System.out.println(k + ":" + v));
+            headers.map().forEach((k, v) -> System.out.println(k + ": values are" + v));
 
-            // print status code
             System.out.println(response.statusCode());
-
-            // print response body
             System.out.println(response.body());
 
             return response.body();
