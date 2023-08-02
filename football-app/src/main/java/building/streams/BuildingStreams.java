@@ -8,8 +8,6 @@ import java.util.stream.Stream;
 
 public class BuildingStreams {
 
-
-
     public static void main(String...args) throws Exception{
 
         // Stream.of
