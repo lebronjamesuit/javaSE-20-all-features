@@ -29,8 +29,24 @@ public class PlayWithStream {
 
         dishesLimit2.forEach(System.out::println);
 
+        // Reduce
+        List<Integer> numbersList = Arrays.asList(3,4,5,1,2);
+        int sum = numbersList.stream().reduce(0, (a, b) -> a + b);
+        System.out.println(sum);
 
+        int sum2 = numbersList.stream().reduce(0, Integer::sum);
+        System.out.println(sum2);
 
+        int max = numbersList.stream().reduce(0, (a, b) -> Integer.max(a, b));
+        System.out.println(max);
+
+        Optional<Integer> min = numbers.stream().reduce(Integer::min);
+        min.ifPresent(System.out::println);
+
+        int calories = Dish.menu.stream()
+                .map(Dish::getCalories)
+                .reduce(0, Integer::sum);
+        System.out.println("Number of calories:" + calories);
 
     }
 
