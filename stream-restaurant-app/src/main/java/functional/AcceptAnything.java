@@ -1,4 +1,4 @@
-package customefunctional;
+package functional;
 
 // It's a consumer type
 

@@ -1,4 +1,4 @@
-package customefunctional;
+package functional;
 
 import org.junit.jupiter.api.Test;
 

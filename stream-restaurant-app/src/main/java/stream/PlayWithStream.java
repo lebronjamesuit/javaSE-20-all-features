@@ -1,4 +1,4 @@
-package building.streams;
+package stream;
 
 import dish.Dish;
 

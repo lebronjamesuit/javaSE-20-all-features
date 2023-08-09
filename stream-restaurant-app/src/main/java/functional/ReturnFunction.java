@@ -1,4 +1,4 @@
-package customefunctional;
+package functional;
 
 // a function type
 

@@ -1,12 +1,8 @@
-package customefunctional;
+package functional;
 
 
-import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class ReturnFunctionTest {
 

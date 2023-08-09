@@ -1,4 +1,4 @@
-package Trader;
+package trader;
 
 public class Transaction {
 
