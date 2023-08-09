@@ -1,4 +1,4 @@
-package english.buz;
+package buz;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,11 +14,10 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.regex.Matcher;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class HttpClientFactoryTest {
+public class HttpClientFactoryTestStyle2 {
 
     private static final String urlFootball = "https://s3.eu-west-1.amazonaws.com/hackajob-assets1.p.hackajob/challenges/football_session/football.json";
     private static HttpRequest request = null;
