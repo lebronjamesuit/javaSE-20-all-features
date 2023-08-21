@@ -2,19 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>app-java-all-features</artifactId>
+        <groupId>org.java.features</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.java.features</groupId>
-    <artifactId>app-java-all-features</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>java8-stream-restaurant-app</module>
-        <module>java9-reactive-stream</module>
-        <module>java11</module>
-        <module>general-functions</module>
-        <module>java16</module>
-    </modules>
+    <artifactId>java16</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
