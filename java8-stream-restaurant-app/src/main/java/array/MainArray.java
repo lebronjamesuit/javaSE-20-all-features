@@ -12,14 +12,14 @@ public class MainArray {
         Integer [] arr2 = new Integer[] {3,5,7,13,26};
 
         // Merge two array into once arr3, return
-         /*
-            ArrayList<Integer> arrInt = ...;
-            arrInt.add(arr1);
-            arrInt.add(arr2);
-           // arrInt has all elements of tow arr1 and arr2 | 1, 2,10,22,25,30,40, 60 , 80, 3,5,7,13,26
-           arrInt.sort(// Condition);  // 1, 2, 3, 5, 7, 10, 13, 25, 26.... 80
-           int [] arrResult =  arrtInt.stream().mapInt(Integer::value).toArray();
+         /* Strategy
+           1. ArrayList<Integer> arrInt = ...;
+            1.1. arrInt.add(arr1);
+            1.2 arrInt.add(arr2);
+            1.3 Check data:  rrInt has all elements of tow arr1 and arr2 | 1, 2,10,22,25,30,40, 60 , 80, 3,5,7,13,26
 
+           2. arrInt.sort(// Condition);  // 1, 2, 3, 5, 7, 10, 13, 25, 26.... 80
+           3. int [] arrResult =  arrtInt.stream().mapInt(Integer::value).toArray();
           */
 
         // Actual implementation

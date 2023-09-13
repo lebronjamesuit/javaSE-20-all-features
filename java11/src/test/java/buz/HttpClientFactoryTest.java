@@ -124,7 +124,7 @@ public class HttpClientFactoryTest {
                 .thenAccept( whole -> System.out.println(" then accept: " + whole));
 
         // Step 3
-        System.out.println("Non-block, this will run before BIG data of future return");
+        System.out.println("Non-block, this will run before Huge data of future return");
         for (int i = 0; i < 500; i++) {
             System.out.println(i);
         }
