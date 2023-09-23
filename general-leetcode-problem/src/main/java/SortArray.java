@@ -1,19 +1,86 @@
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
+import java.util.Random;
 
 public class SortArray {
 
 
     public static void main(String... args) throws IOException {
 
-         // 7 2 1 6 8 5 3 4
-        Integer [] arrInt = new Integer[]{7,2,1,6,8,5,3,4};
-        selectionSort(arrInt);
-      //  Arrays.stream(arrInt).forEach(System.out::println);
+        System.out.println("Please enter a big numbers from 1.000.000 to 100.000.000 " );
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String size = br.readLine();
+        Random random = new Random();
+        int arraySize = Integer.parseInt(size);
+        int [] randomArrayInt =  new int[arraySize];
 
-        Integer [] arrayInteger2 = new Integer[]{7,2,1,6,8,5,3,4};
-        bubbleSort(arrayInteger2);
-        Arrays.stream(arrayInteger2).forEach(System.out::println);
+        for (int i = 0; i <randomArrayInt.length; i++) {
+            randomArrayInt[i] = random.nextInt();
+        }
+
+         // Compare
+        // size 200.000 , Time: 17 seconds, O(n*n) | 20. 000.000.000 -> 20 Billion Operation
+        //   observationSelectionSort(randomArrayInt);
+
+        System.out.println("---------");
+
+        // size 200.000 , Time: 1 minutes 28 seconds, O(n*n)
+       // observationBubbleSort(randomArrayInt);
+
+        System.out.println("---------");
+        // size 200000 , Time: 0.043562 second = 43 milisecond , O(n log n )
+        // https://www.omnicalculator.com/math/log
+        // -> n = 200.000 -> O(n logn) = 200.000 * 17.61 = 3.522.000 operations
+         observationsQuickSort(randomArrayInt);
+    }
+
+    private static void observationBubbleSort(int[] randomArrayInt) {
+        //Integer [] arrayInteger2 = new Integer[]{7,2,1,6,8,5,3,4};
+        double size = randomArrayInt.length;
+        Instant starts = Instant.now();
+        System.out.println("Time before " + starts);
+        bubbleSort(randomArrayInt);
+
+        Instant ends = Instant.now();
+        System.out.println("Time ends " + ends);
+        System.out.println("Duration  " + Duration.between(starts, ends));
+        System.out.println("BubbleSort  Time complexity is O(n * n)  which n * n = " + Math.pow(size, 2) );
+       // Arrays.stream(arrayInteger2).forEach(System.out::println);
+
+    }
+
+    private static void observationSelectionSort(int[] randomArrayInt) {
+        //Integer [] arrInt = new Integer[]{7,2,1,6,8,5,3,4};
+        double size = randomArrayInt.length;
+        Instant starts = Instant.now();
+        System.out.println("Time before " + starts);
+
+        selectionSort(randomArrayInt);
+
+
+        Instant ends = Instant.now();
+        System.out.println("Time ends " + ends);
+        System.out.println("Duration  " + Duration.between(starts, ends));
+        System.out.println("SelectionSort Time complexity is O(n * n)  which n*n = " +  Math.pow(size, 2) );
+    }
+
+    private static void observationsQuickSort(int[] randomArrayInt) throws IOException {
+        //int [] arrayInteger3 = new int[]{7,2,1,6,8,5,3,4};
+
+        Instant starts = Instant.now();
+        System.out.println("Time before " + starts);
+
+        quickSortMyOwn(randomArrayInt);
+
+        Instant ends = Instant.now();
+        System.out.println("Time ends " + ends);
+        System.out.println("Duration  " + Duration.between(starts, ends));
+        System.out.println("Quick sort Time complexity is O(log n)  which n = " + randomArrayInt.length );
+        //  Arrays.stream(randomArrayInt).forEach(System.out::println);  // Open this command when array size less than 100
     }
 
    /*  Selection Sort: run a double for loop to iterate array a size 8,
@@ -36,8 +103,7 @@ public class SortArray {
 
     */
 
-
-    public static Integer [] selectionSort(Integer [] a) {
+    public static int [] selectionSort(int [] a) {
         for (int i =0 ; i < a.length - 1 ; i++){
             int indexOfSmaller = i;
             int smallest = a[i] ;
@@ -76,7 +142,7 @@ public class SortArray {
 
     */
 
-    public static Integer [] bubbleSort(Integer [] a) {
+    public static int [] bubbleSort(int [] a) {
         int size = a.length; // 8
         for (int i = 0; i < size -1 ; i++) {   // i index max = 6
             for (int j = i+1; j < size; j++) {  // j index max = 7
@@ -92,7 +158,100 @@ public class SortArray {
     }
 
 
+    private static int [] quickSortMyOwn(int [] arrayA){
+     return  quickSortRecursive(arrayA, 0, arrayA.length-1);
+    }
 
+    private static int [] quickSortRecursive(int [] arrayA, int start, int end) {
+        if(start > end) return arrayA;
+        int pIndex = partition(arrayA, start, end);
+        quickSortRecursive(arrayA, start, pIndex-1);
+        quickSortRecursive(arrayA, pIndex+1, end);
+
+        return arrayA;
+    }
+
+    private static int partition(int[] arrA, int start, int end) {
+        var pivot  = arrA[end];
+        var pIndex = start; // partition index.
+        for(var i= start; i < end; i++){  //  do not access pivot element
+            if ( arrA[i] < pivot )  {
+                swap(arrA, i, pIndex);
+                pIndex++;
+            }// push it to the left by swap();
+
+        }
+        swap(arrA, end, pIndex);
+        return pIndex;
+
+    }
+
+    private static void swap(int[] a, int right, int left) {
+        int tmp = a[right];
+        a[right] = a[left];
+        a[left] = tmp;
+    }
 }
+
+/*Quick Sort: pick a pivot on the right of the array. Do the partitioning for the array
+     bigger elements go to the right, smaller elements to the left.
+     We got 2 small problems, continue this recursion to divide 2 small problems to 4 small problem
+     Device until the smallest acceptable subarray is 2 elements.
+
+     e.g
+    a  []  {7,2,1,6,8,5,3,4}   Size = 8
+    index   0 1 2 3 4 5 6 7
+
+  After the method partition is called once. the array will be like this
+    a  []  {2,1,3, 4 ,8,5,7, 6}   Pivot = 4;
+    index   0 1 2  3  4 5 6  7
+
+    i       0 1 2 3 4 5
+    pIndex  0 1 2 3
+
+     // start = 0, end = a[size-1];
+     partition(a, start, end) {
+        pivot  = a[end]; // a[7] = 4
+        pIndex = 0; // partition index.
+        for(i=0; i < end-1; i++){
+          if a[i] < pivot // push it to the left by swap();
+            swap(a, a[i], pIndex);
+            pIndex++;
+        }
+        swap(arr, Pindex, PivotIndex);
+
+       return pIndex;
+     }
+
+
+     QuickSoftGeneral(arr, start, end){
+
+      if (start > end )
+       int pIndex = partition(arr, start, end);
+                     QuickSortGeneral(arr, start, pIndex-1) ; // Left
+                     QuickSortGeneral(arr, pIndex+1, end); // right
+
+
+     }
+
+// Call stack
+    I) 2,1,3  call the QuickSoftGeneral(arr, 0, 4);
+        2 1 3  (Pivot is 3) run partition method we have
+        1 2 3  pIndex = 0;
+        Next round  call QuickSoftGeneral (arr, 0, -1) // hit the stop condition.
+
+
+    arr 1 2 3 4 8,5,7,6
+    ix  0 1 2 3 4 5 6 7
+
+        8 5 7 6  call the QuickSoftGeneral(arr, 4, 7); pivot is 6
+ state  5 8 7 6
+ state  5 6 7 8
+
+     i  4 5 6
+ pIndex 4 5    return PIndex = 5;
+
+    *
+    * */
 
 
