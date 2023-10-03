@@ -1,17 +1,8 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.*;
-
 
 // Silly way to implement, native way
-public class TestClass01 {
+public class BuyerConnections {
 
         public static void main(String args[] ) throws Exception {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -46,7 +37,8 @@ public class TestClass01 {
                     }
                 }
             }
-            return countLink--;  // minus 1 time because loop duplicate row once.
+            countLink-- ;
+            return countLink;  // minus 1 time because loop duplicate row once.
         }
 
 }

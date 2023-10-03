@@ -11,7 +11,7 @@ public class FindPathOutOfTheMaze {
         int cols = Integer.parseInt(dimensions[1]);
         int[][] grid = readInputGrid(br, rows, cols);
 
-        int path = shortestPath(rows, cols, grid);
+        int path = shortestPathOutOfTheMaze(rows, cols, grid);
         System.out.println(path);
     }
 
@@ -27,7 +27,7 @@ public class FindPathOutOfTheMaze {
     }
 
 
-    static int shortestPath(int rowsSize, int colsSize, int[][] grid) {
+    static int shortestPathOutOfTheMaze(int rowsSize, int colsSize, int[][] grid) {
         int  [][] drawThePath = new int [rowsSize][colsSize];
         // first element
         drawThePath[0][0] = 0; //  0 go;  -1 block

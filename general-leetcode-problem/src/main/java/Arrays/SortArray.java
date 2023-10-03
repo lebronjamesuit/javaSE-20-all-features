@@ -1,3 +1,5 @@
+package Arrays;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,10 +10,10 @@ import java.util.Random;
 
 public class SortArray {
 
-
+    // Compare the speed of Selection Sort, Bubble Sort and Quick Sort.
     public static void main(String... args) throws IOException {
 
-        System.out.println("Please enter a big numbers from 1.000.000 to 100.000.000 " );
+        System.out.println("Please enter a big numbers from 100.000 to 1.000.000 " );
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String size = br.readLine();
         Random random = new Random();
@@ -61,7 +63,6 @@ public class SortArray {
 
         selectionSort(randomArrayInt);
 
-
         Instant ends = Instant.now();
         System.out.println("Time ends " + ends);
         System.out.println("Duration  " + Duration.between(starts, ends));
@@ -83,7 +84,10 @@ public class SortArray {
         //  Arrays.stream(randomArrayInt).forEach(System.out::println);  // Open this command when array size less than 100
     }
 
-   /*  Selection Sort: run a double for loop to iterate array a size 8,
+   /*
+    Story line
+
+    Selection Sort: run a double for loop to iterate array a size 8,
       Each loop I select the smallest numbers, then push it to the left of the array by
       Swap current index with a[i]. Keep push the smallest element to the left.
       Each loop it solves 1 problem. Remain n-1 problem.
