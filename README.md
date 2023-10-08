@@ -24,6 +24,17 @@ Java 10 introduced type inference for local variables declared using 'var'.
 
 Java 11 extends this to allow 'var' to also be used on lambda parameters.
 
+## Java 16
+
+        // Java 11
+        return  listLong.stream().map( l -> {
+            return l.intValue();
+        }).collect(toList());
+
+        // Java 16: Stream has more direct APIs.
+        return  listLong.stream().map( l -> {
+            return l.intValue();
+        }).toList();
 
 
 
