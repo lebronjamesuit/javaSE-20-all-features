@@ -180,6 +180,7 @@ public class SortArray {
         var pIndex = start; // partition index.
         for(var i= start; i < end; i++){  //  do not access pivot element
             if ( arrA[i] < pivot )  {
+                //
                 swap(arrA, i, pIndex);
                 pIndex++;
             }// push it to the left by swap();
