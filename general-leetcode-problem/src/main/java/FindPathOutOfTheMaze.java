@@ -28,6 +28,8 @@ public class FindPathOutOfTheMaze {
 
 
     static int shortestPathOutOfTheMaze(int rowsSize, int colsSize, int[][] grid) {
+
+        int maxValue =  99999;
         int  [][] drawThePath = new int [rowsSize][colsSize];
         // first element
         drawThePath[0][0] = 0; //  0 go;  -1 block
@@ -42,13 +44,13 @@ public class FindPathOutOfTheMaze {
             drawThePath[row][0] = ( grid[row][0] == 0 ?  drawThePath[row - 1][0] + 1 : -1) ;
         }
 
-        // draw the rest of the row
+        // draw the rest of the col
         for (int row = 1; row < rowsSize; row++) {
             for (int col = 1; col < colsSize; col++) {
                 if(grid[row][col] == 0){
                     // Min(top,left)
-                    int top = (drawThePath[row-1][col] == -1 ? Integer.MAX_VALUE : drawThePath[row-1][col] ) ; // get  element above
-                    int left = (drawThePath[row][col-1] == -1 ? Integer.MAX_VALUE : drawThePath[row][col-1]); // get  prev element
+                    int top = (drawThePath[row-1][col] == -1 ? maxValue : drawThePath[row-1][col] ) ; // get  element above
+                    int left = (drawThePath[row][col-1] == -1 ? maxValue : drawThePath[row][col-1]); // get  prev element
                     drawThePath[row][col] = Math.min(top,left) + 1;
                }else {
                     drawThePath[row][col] = -1; // end path
